@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#5F9EA0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/zdjecie"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:contentDescription="Zdjęcie osoby" />
+
+        <ImageView
+            android:id="@+id/odcisk"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:contentDescription="Odcisk palca" />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:text="OK"
+        android:textColor="#000000"
+        android:backgroundTint="#F0FFFF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="Numer"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:gravity="center_vertical" />
+
+        <EditText
+            android:id="@+id/numer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#F0FFFF"
+            android:inputType="number"
+            android:singleLine="true"
+            android:padding="8dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="Imię"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:gravity="center_vertical" />
+
+        <EditText
+            android:id="@+id/imie"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#F0FFFF"
+            android:singleLine="true"
+            android:padding="8dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="Nazwisko"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:gravity="center_vertical" />
+
+        <EditText
+            android:id="@+id/nazwisko"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#F0FFFF"
+            android:singleLine="true"
+            android:padding="8dp" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/kolorOczu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kolor oczu"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/niebieskie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="niebieskie"
+            android:checked="true"
+            android:textColor="#000000" />
+
+        <RadioButton
+            android:id="@+id/zielone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="zielone"
+            android:textColor="#000000" />
+
+        <RadioButton
+            android:id="@+id/piwne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="piwne"
+            android:textColor="#000000" />
+
+    </RadioGroup>
+
+</LinearLayout>
