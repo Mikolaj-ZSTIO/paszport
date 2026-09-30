@@ -12,86 +12,85 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText numer;
-    private EditText imie;
-    private EditText nazwisko;
+    private EditText poleNumeru;
+    private EditText poleImienia;
+    private EditText poleNazwiska;
 
-    private ImageView zdjecie;
-    private ImageView odcisk;
+    private ImageView obrazekOsoby;
+    private ImageView obrazekOdcisku;
 
-    private RadioButton niebieskie;
-    private RadioButton zielone;
-    private RadioButton piwne;
+    private RadioButton oczyNiebieskie;
+    private RadioButton oczyZielone;
+    private RadioButton oczyPiwne;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        numer = findViewById(R.id.numer);
-        imie = findViewById(R.id.imie);
-        nazwisko = findViewById(R.id.nazwisko);
+        poleNumeru = findViewById(R.id.numer);
+        poleImienia = findViewById(R.id.imie);
+        poleNazwiska = findViewById(R.id.nazwisko);
 
-        zdjecie = findViewById(R.id.zdjecie);
-        odcisk = findViewById(R.id.odcisk);
+        obrazekOsoby = findViewById(R.id.zdjecie);
+        obrazekOdcisku = findViewById(R.id.odcisk);
 
-        niebieskie = findViewById(R.id.niebieskie);
-        zielone = findViewById(R.id.zielone);
-        piwne = findViewById(R.id.piwne);
+        oczyNiebieskie = findViewById(R.id.niebieskie);
+        oczyZielone = findViewById(R.id.zielone);
+        oczyPiwne = findViewById(R.id.piwne);
 
-        Button ok = findViewById(R.id.ok);
+        Button przyciskOk = findViewById(R.id.ok);
 
-        numer.setOnFocusChangeListener((view, hasFocus) -> {
+        poleNumeru.setOnFocusChangeListener((view, hasFocus) -> {
             if (!hasFocus) {
-                aktualizujZdjecia();
+                wyswietlZdjecia();
             }
         });
 
-        ok.setOnClickListener(view -> pokazDane());
+        przyciskOk.setOnClickListener(view -> wyswietlInformacje());
     }
 
-    private void aktualizujZdjecia() {
+    private void wyswietlZdjecia() {
 
-        String numerZdjecia = numer.getText().toString().trim();
+        String numer = poleNumeru.getText().toString().trim();
 
-        if (numerZdjecia.isEmpty()) {
-            zdjecie.setImageDrawable(null);
-            odcisk.setImageDrawable(null);
+        if (numer.isEmpty()) {
+            obrazekOsoby.setImageDrawable(null);
+            obrazekOdcisku.setImageDrawable(null);
             return;
         }
 
-        int idZdjecie = getResources().getIdentifier(
-                "zdjecie" + numerZdjecia,
+        int zdjecieId = getResources().getIdentifier(
+                "zdjecie" + numer,
                 "drawable",
                 getPackageName()
         );
 
-        int idOdcisk = getResources().getIdentifier(
-                "odcisk" + numerZdjecia,
+        int odciskId = getResources().getIdentifier(
+                "odcisk" + numer,
                 "drawable",
                 getPackageName()
         );
 
-        if (idZdjecie != 0) {
-            zdjecie.setImageResource(idZdjecie);
+        if (zdjecieId != 0) {
+            obrazekOsoby.setImageResource(zdjecieId);
         } else {
-            zdjecie.setImageDrawable(null);
+            obrazekOsoby.setImageDrawable(null);
         }
 
-        if (idOdcisk != 0) {
-            odcisk.setImageResource(idOdcisk);
+        if (odciskId != 0) {
+            obrazekOdcisku.setImageResource(odciskId);
         } else {
-            odcisk.setImageDrawable(null);
+            obrazekOdcisku.setImageDrawable(null);
         }
     }
 
-    private void pokazDane() {
+    private void wyswietlInformacje() {
 
-        String imieTekst = imie.getText().toString().trim();
-        String nazwiskoTekst = nazwisko.getText().toString().trim();
+        String imie = poleImienia.getText().toString().trim();
+        String nazwisko = poleNazwiska.getText().toString().trim();
 
-        if (TextUtils.isEmpty(imieTekst)
-                || TextUtils.isEmpty(nazwiskoTekst)) {
+        if (TextUtils.isEmpty(imie) || TextUtils.isEmpty(nazwisko)) {
 
             Toast.makeText(
                     this,
@@ -104,25 +103,24 @@ public class MainActivity extends AppCompatActivity {
 
         String kolorOczu;
 
-        if (niebieskie.isChecked()) {
+        if (oczyNiebieskie.isChecked()) {
             kolorOczu = "niebieskie";
-        } else if (zielone.isChecked()) {
+        } else if (oczyZielone.isChecked()) {
             kolorOczu = "zielone";
         } else {
             kolorOczu = "piwne";
         }
 
-        String komunikat =
-                imieTekst + " "
-                        + nazwiskoTekst
+        String wiadomosc =
+                imie + " "
+                        + nazwisko
                         + " kolor oczu "
                         + kolorOczu;
 
         Toast.makeText(
                 this,
-                komunikat,
+                wiadomosc,
                 Toast.LENGTH_LONG
         ).show();
     }
 }
-
