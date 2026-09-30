@@ -116,6 +116,13 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF" />
+
+
     <RadioGroup
         android:id="@+id/kolorOczu"
         android:layout_width="match_parent"
@@ -152,6 +159,12 @@
             android:layout_height="wrap_content"
             android:text="piwne"
             android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/outputText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
 
     </RadioGroup>
 
