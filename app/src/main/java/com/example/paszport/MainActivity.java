@@ -2,16 +2,19 @@ package com.example.paszport;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private TextView outputText;
     private EditText poleNumeru;
     private EditText poleImienia;
     private EditText poleNazwiska;
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         oczyNiebieskie = findViewById(R.id.niebieskie);
         oczyZielone = findViewById(R.id.zielone);
         oczyPiwne = findViewById(R.id.piwne);
+
+        outputText = findViewById(R.id.outputText);
 
         Button przyciskOk = findViewById(R.id.ok);
 
@@ -97,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
                     "Wprowadź dane",
                     Toast.LENGTH_SHORT
             ).show();
+            outputText.setText("Wprowadź dane");
+            Log.d("PASS_INSUFFICIENT_DATA", "insufficient data");
 
             return;
         }
@@ -111,16 +118,15 @@ public class MainActivity extends AppCompatActivity {
             kolorOczu = "piwne";
         }
 
-        String wiadomosc =
-                imie + " "
-                        + nazwisko
-                        + " kolor oczu "
-                        + kolorOczu;
+        String wiadomosc = imie + " " + nazwisko + " kolor oczu " + kolorOczu;
 
         Toast.makeText(
                 this,
                 wiadomosc,
                 Toast.LENGTH_LONG
         ).show();
+
+        outputText.setText(wiadomosc);
+        Log.d("PASS_OUTPUT", wiadomosc);
     }
 }
