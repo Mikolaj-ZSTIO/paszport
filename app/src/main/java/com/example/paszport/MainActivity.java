@@ -118,11 +118,7 @@ public class MainActivity extends AppCompatActivity {
             kolorOczu = "piwne";
         }
 
-        String wiadomosc =
-                imie + " "
-                        + nazwisko
-                        + " kolor oczu "
-                        + kolorOczu;
+        String wiadomosc = imie + " " + nazwisko + " kolor oczu " + kolorOczu;
 
         Toast.makeText(
                 this,
