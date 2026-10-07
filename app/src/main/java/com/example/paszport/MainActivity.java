@@ -14,86 +14,86 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView outputText;
-    private EditText poleNumeru;
-    private EditText poleImienia;
-    private EditText poleNazwiska;
+    private TextView tekstWyniku;
+    private EditText numerPaszportu;
+    private EditText imieOsoby;
+    private EditText nazwiskoOsoby;
 
-    private ImageView obrazekOsoby;
-    private ImageView obrazekOdcisku;
+    private ImageView zdjecieOsoby;
+    private ImageView odciskOsoby;
 
-    private RadioButton oczyNiebieskie;
-    private RadioButton oczyZielone;
-    private RadioButton oczyPiwne;
+    private RadioButton kolorNiebieski;
+    private RadioButton kolorZielony;
+    private RadioButton kolorPiwne;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        poleNumeru = findViewById(R.id.numer);
-        poleImienia = findViewById(R.id.imie);
-        poleNazwiska = findViewById(R.id.nazwisko);
+        numerPaszportu = findViewById(R.id.numer);
+        imieOsoby = findViewById(R.id.imie);
+        nazwiskoOsoby = findViewById(R.id.nazwisko);
 
-        obrazekOsoby = findViewById(R.id.zdjecie);
-        obrazekOdcisku = findViewById(R.id.odcisk);
+        zdjecieOsoby = findViewById(R.id.zdjecie);
+        odciskOsoby = findViewById(R.id.odcisk);
 
-        oczyNiebieskie = findViewById(R.id.niebieskie);
-        oczyZielone = findViewById(R.id.zielone);
-        oczyPiwne = findViewById(R.id.piwne);
+        kolorNiebieski = findViewById(R.id.niebieskie);
+        kolorZielony = findViewById(R.id.zielone);
+        kolorPiwne = findViewById(R.id.piwne);
 
-        outputText = findViewById(R.id.outputText);
+        tekstWyniku = findViewById(R.id.outputText);
 
-        Button przyciskOk = findViewById(R.id.ok);
+        Button przyciskZatwierdz = findViewById(R.id.ok);
 
-        poleNumeru.setOnFocusChangeListener((view, hasFocus) -> {
+        numerPaszportu.setOnFocusChangeListener((view, hasFocus) -> {
             if (!hasFocus) {
                 wyswietlZdjecia();
             }
         });
 
-        przyciskOk.setOnClickListener(view -> wyswietlInformacje());
+        przyciskZatwierdz.setOnClickListener(view -> wyswietlInformacje());
     }
 
     private void wyswietlZdjecia() {
 
-        String numer = poleNumeru.getText().toString().trim();
+        String numer = numerPaszportu.getText().toString().trim();
 
         if (numer.isEmpty()) {
-            obrazekOsoby.setImageDrawable(null);
-            obrazekOdcisku.setImageDrawable(null);
+            zdjecieOsoby.setImageDrawable(null);
+            odciskOsoby.setImageDrawable(null);
             return;
         }
 
-        int zdjecieId = getResources().getIdentifier(
+        int identyfikatorZdjecia = getResources().getIdentifier(
                 "zdjecie" + numer,
                 "drawable",
                 getPackageName()
         );
 
-        int odciskId = getResources().getIdentifier(
+        int identyfikatorOdcisku = getResources().getIdentifier(
                 "odcisk" + numer,
                 "drawable",
                 getPackageName()
         );
 
-        if (zdjecieId != 0) {
-            obrazekOsoby.setImageResource(zdjecieId);
+        if (identyfikatorZdjecia != 0) {
+            zdjecieOsoby.setImageResource(identyfikatorZdjecia);
         } else {
-            obrazekOsoby.setImageDrawable(null);
+            zdjecieOsoby.setImageDrawable(null);
         }
 
-        if (odciskId != 0) {
-            obrazekOdcisku.setImageResource(odciskId);
+        if (identyfikatorOdcisku != 0) {
+            odciskOsoby.setImageResource(identyfikatorOdcisku);
         } else {
-            obrazekOdcisku.setImageDrawable(null);
+            odciskOsoby.setImageDrawable(null);
         }
     }
 
     private void wyswietlInformacje() {
 
-        String imie = poleImienia.getText().toString().trim();
-        String nazwisko = poleNazwiska.getText().toString().trim();
+        String imie = imieOsoby.getText().toString().trim();
+        String nazwisko = nazwiskoOsoby.getText().toString().trim();
 
         if (TextUtils.isEmpty(imie) || TextUtils.isEmpty(nazwisko)) {
 
@@ -102,31 +102,32 @@ public class MainActivity extends AppCompatActivity {
                     "Wprowadź dane",
                     Toast.LENGTH_SHORT
             ).show();
-            outputText.setText("Wprowadź dane");
-            Log.d("PASS_INSUFFICIENT_DATA", "insufficient data");
+
+            tekstWyniku.setText("Wprowadź dane");
+            Log.d("PASSPORT_DATA", "brak danych");
 
             return;
         }
 
         String kolorOczu;
 
-        if (oczyNiebieskie.isChecked()) {
+        if (kolorNiebieski.isChecked()) {
             kolorOczu = "niebieskie";
-        } else if (oczyZielone.isChecked()) {
+        } else if (kolorZielony.isChecked()) {
             kolorOczu = "zielone";
         } else {
             kolorOczu = "piwne";
         }
 
-        String wiadomosc = imie + " " + nazwisko + " kolor oczu " + kolorOczu;
+        String komunikat = imie + " " + nazwisko + " kolor oczu " + kolorOczu;
 
         Toast.makeText(
                 this,
-                wiadomosc,
+                komunikat,
                 Toast.LENGTH_LONG
         ).show();
 
-        outputText.setText(wiadomosc);
-        Log.d("PASS_OUTPUT", wiadomosc);
+        tekstWyniku.setText(komunikat);
+        Log.d("PASSPORT_OUTPUT", komunikat);
     }
 }

@@ -10,26 +10,26 @@ public class PaszportValidator {
     public void testUtworzeniePaszportu() {
 
         Paszport paszport = new Paszport(
-                "123",
-                "Jan",
-                "Kowalski",
-                "niebieskie"
+                "456",
+                "Adam",
+                "Nowak",
+                "zielone"
         );
 
-        assertEquals("123", paszport.getNumer());
-        assertEquals("Jan", paszport.getImie());
-        assertEquals("Kowalski", paszport.getNazwisko());
-        assertEquals("niebieskie", paszport.getKolorOczu());
+        assertEquals("456", paszport.getNumer());
+        assertEquals("Adam", paszport.getImie());
+        assertEquals("Nowak", paszport.getNazwisko());
+        assertEquals("zielone", paszport.getKolorOczu());
     }
 
     @Test
     public void testPoprawnyPaszport() {
 
         Paszport paszport = new Paszport(
-                "123",
-                "Jan",
-                "Kowalski",
-                "niebieskie"
+                "456",
+                "Adam",
+                "Nowak",
+                "zielone"
         );
 
         assertTrue(Validator.czyPoprawnyPaszport(paszport));
@@ -39,10 +39,10 @@ public class PaszportValidator {
     public void testBrakImienia() {
 
         Paszport paszport = new Paszport(
-                "123",
+                "456",
                 "",
-                "Kowalski",
-                "niebieskie"
+                "Nowak",
+                "zielone"
         );
 
         assertFalse(Validator.czyPoprawnyPaszport(paszport));
@@ -52,10 +52,10 @@ public class PaszportValidator {
     public void testBrakNazwiska() {
 
         Paszport paszport = new Paszport(
-                "123",
-                "Jan",
+                "456",
+                "Adam",
                 "",
-                "niebieskie"
+                "zielone"
         );
 
         assertFalse(Validator.czyPoprawnyPaszport(paszport));
@@ -66,9 +66,9 @@ public class PaszportValidator {
 
         Paszport paszport = new Paszport(
                 "",
-                "Jan",
-                "Kowalski",
-                "niebieskie"
+                "Adam",
+                "Nowak",
+                "zielone"
         );
 
         assertFalse(Validator.czyPoprawnyPaszport(paszport));
@@ -78,10 +78,10 @@ public class PaszportValidator {
     public void testNiepoprawnyKolorOczu() {
 
         Paszport paszport = new Paszport(
-                "123",
-                "Jan",
-                "Kowalski",
-                "czerwone"
+                "456",
+                "Adam",
+                "Nowak",
+                "fioletowe"
         );
 
         assertFalse(Validator.czyPoprawnyPaszport(paszport));
@@ -98,7 +98,7 @@ public class PaszportValidator {
     @Test
     public void testNiepoprawneKoloryOczu() {
 
-        assertFalse(Validator.czyPoprawnyKolorOczu("czerwone"));
+        assertFalse(Validator.czyPoprawnyKolorOczu("fioletowe"));
         assertFalse(Validator.czyPoprawnyKolorOczu(""));
         assertFalse(Validator.czyPoprawnyKolorOczu(null));
     }
@@ -107,14 +107,14 @@ public class PaszportValidator {
     public void testToString() {
 
         Paszport paszport = new Paszport(
-                "123",
-                "Jan",
-                "Kowalski",
-                "niebieskie"
+                "456",
+                "Adam",
+                "Nowak",
+                "zielone"
         );
 
         assertEquals(
-                "Jan Kowalski kolor oczu niebieskie",
+                "Adam Nowak kolor oczu zielone",
                 paszport.toString()
         );
     }
